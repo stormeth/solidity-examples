@@ -27,8 +27,9 @@ fs.readFile('tmult.json', 'utf8', function (err,data) {
 
 var json = JSON.parse(fs.readFileSync('tmult.json', 'utf8'));
 
-abi1 = json.contracts['tmult\.sol:TMult'].abi;
-bin = json.contracts['tmult\.sol:TMult'].bin;
+var abi1 = json.contracts['tmult\.sol:TMult'].abi;
+var bin = json.contracts['tmult\.sol:TMult'].bin;
+bin = '0x' + bin;
 console.log(abi1)
 console.log(bin)
 
@@ -36,8 +37,12 @@ var primaryAddress = web3.eth.accounts[0]
 var abi = [{ constant: false, inputs: { name: 'a', type: 'uint256' } }]
 var MyContract = web3.eth.contract(abi)
 
-var hexValue = "aaaaaa";
-hexValue = "0x" + hexValue;
-hexValue = parseInt(hexValue , 16);
+//var hexValue = "10";
+//hexValue = "0x" + hexValue;
+//hexValue = parseInt(hexValue , 256);
 
-var contract = MyContract.new('john', hexValue, {from: primaryAddress, data: bin})
+var x = 0x10;
+
+console.log(x)
+
+var contract = MyContract.new(x, {from: primaryAddress, data: bin})
