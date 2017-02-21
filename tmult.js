@@ -12,6 +12,13 @@ fs.readFile('tmult.json', 'utf8', function (err,data) {
   var obj = JSON.parse(data);
   abi = obj.contracts['tmult\.sol:TMult'].abi;
   bin = obj.contracts['tmult\.sol:TMult'].bin;
-  console.log(abi)
-  console.log(bin)
+  //console.log(abi)
+  //console.log(bin)
+
+  var primaryAddress = web3.eth.accounts[0]
+  //var abi = [{ constant: false, inputs: { name: 'a', type: 'uint256' } }]
+  var MyContract = web3.eth.contract(abi)
+  var contract = MyContract.new(7, {from: primaryAddress, data: bin})
+
+
 });
