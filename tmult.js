@@ -45,4 +45,9 @@ var x = 0x10;
 
 console.log(x)
 
-var contract = MyContract.new(x, {from: primaryAddress, data: bin})
+//var contract = MyContract.new(x, {from: primaryAddress, data: bin})
+
+MyContract.new([x],{from: primaryAddress, data: bin}, function(err, contract) {
+  if (!err && contract.address)
+    console.log(contract.address);
+});
